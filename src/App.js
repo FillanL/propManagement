@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react'
+import Footer from './Components/Footer';
+import Hero from './Containers/LandingPageComponents/Hero';
+import MainNavBar from './Containers/MainNavBar';
 
 function App() {
+  const [color, setColor] = useState("")
+  const changeTheme = (currentTheme) =>{
+    if(currentTheme === "dark"){ 
+      localStorage.setItem("appTheme","light"); 
+      return "light" 
+    }
+    localStorage.setItem("appTheme","dark")
+    return "dark"
+  }
+  
+  useEffect(() => {
+    localStorage.getItem("appTheme") ? setColor(localStorage.getItem("appTheme")) : setColor(localStorage.setItem("appTheme","dark"))
+  }, [color])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainNavBar theme={color}/>
+      <Hero theme={color}/>
+      <button onClick={()=>setColor(changeTheme(color)) }> change theeme</button>
+      <Footer theme={color}/>
     </div>
   );
 }
