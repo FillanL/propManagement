@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { useHistory } from 'react-router-dom'
+
 function MainNavBar({theme}) {
+    const history = useHistory();
     return (
         <NavContainer theme={theme}>
-            <LogoHolder>Property Mangement</LogoHolder>
+            <LogoHolder onClick={()=>history.push("/")}>Property Mangement</LogoHolder>
             <UnorderedList>
                 <NavItem>Discover</NavItem>
                 <NavItem>Categories</NavItem>
                 <NavItem>Feed</NavItem>
             </UnorderedList>
             <RegisterHolder>
-                <Button theme={theme}>Login</Button>
-                <Button theme={theme} color={"#e6beae"}>Try it Now</Button>
+                <Button onClick={()=>history.push("/login")} theme={theme}> Login</Button>
+                <Button onClick={()=>history.push("/signup")} theme={theme} color={"#e6beae"}>Try it Now</Button>
             </RegisterHolder>
         </NavContainer>
     )
@@ -33,6 +36,7 @@ const Button = styled.button`
     margin: 0.5em 0.5em;
     padding: 0.5rem 1rem;
     outline-style: none;
+    cursor: pointer;
 `
 const LogoHolder = styled.span`
     font-weight: 900;
@@ -40,6 +44,7 @@ const LogoHolder = styled.span`
     background: transparent;
     padding: 0.5rem 1rem;
     color: #e36414;
+    cursor: pointer;
 `
 const UnorderedList = styled.ul`
     display: inline;

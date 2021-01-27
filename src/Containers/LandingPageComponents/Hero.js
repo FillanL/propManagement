@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {ComponentContainer} from '../../Shared/SharedStyledComponents'
+import {ComponentContainer} from '../../Shared/SharedStyles/SharedStyledComponents'
 
 function Hero({theme}) {
     return (
